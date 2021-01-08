@@ -5,20 +5,18 @@ run dijkstra, pagerank using CSR
 ### single thread   
 algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
 ---|---|---|---|
-toCSR|0.372187seconds|3.3466seconds|   
-pagerank(with 10 iterations)|1.62748seconds|17.244seconds|
-dijkstra|109.599seconds
+toCSR|0.014615seconds|0.155632seconds|44.6702seconds   
+pagerank(with 10 iterations)|0.0564171seconds|0.577729seconds|46.107seconds
+dijkstra|5.57013seconds|
 
 ### 4 threads   
 algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
----|---|---|---|
-toCSR|0.372187seconds|3.3466seconds|   
-pagerank(with 10 iterations)|1.62748seconds|17.244seconds|
+---|---|---|---|  
+pagerank(with 10 iterations)|0.0343337seconds|0.24118seconds|18.6534seconds
 dijkstra|109.599seconds
 
 ### 8 threads   
 algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
 ---|---|---|---|
-toCSR|0.372187seconds|3.3466seconds|   
-pagerank(with 10 iterations)|1.62748seconds|17.244seconds|
+pagerank(with 10 iterations)|0.0410054seconds|0.207899seconds|17.5329seconds
 dijkstra|109.599seconds
