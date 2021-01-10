@@ -18,5 +18,5 @@ dijkstra|2.9379s|
 ### gpabs
 algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
 ---|---|---|---|   
-pagerank(with 10 iterations)|0.06861s|0.57092seconds|2.24845s
+pagerank(with 10 iterations)|0.06861s|0.57092s|2.24845s
 dijkstra|0.79807s|2.47277s|21.11190s  
