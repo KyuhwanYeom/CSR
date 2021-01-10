@@ -7,22 +7,23 @@
 #include <stdio.h>
 #include <cstdio>
 #include <omp.h>
+#include <unistd.h>
 #include "CSR_convert.h"
 
 using namespace std;
 using namespace std::chrono;
 
 #define INF 10000000
+extern char* optarg;
 vector<vector<int>> adj;
 vector<int> weight;
 vector<int> Vertex_Table = { 0 }; // Start from 0
 vector<int> Edge_Table;
+bool do_print=false;
+int n_it;
 
-struct Edge {
-	bool exist_Edge;
-	int weight;
-};
-
+void numiter();
+void enable_print();
 void addEdge(int, int);
 
 void Pagerank_multithread(int, vector<double>, int);//pagerank
@@ -35,6 +36,7 @@ int main(int argc, char**argv)
 	int V;
 	int src;
 	int destination;
+	int option=0;
 	FILE *fp;
 	fp = fopen(argv[1], "r");
 	V = atoi(argv[2]);
@@ -43,14 +45,26 @@ int main(int argc, char**argv)
 		fscanf(fp, "%d %d", &src, &destination);
 		addEdge(src, destination);
 	}
+	while((option=getopt(argc, argv, "pn:"))!=EOF){
+		switch(option)
+		{
+			case 'p':enable_print();break;
+			case 'n':numiter();break;
+		}
+	}
 	rank.resize(V);
 	toCSR(V, adj);
-	Pagerank_multithread(V, rank, 10);
+	Pagerank_multithread(V, rank, n_it);
 	auto end = chrono::system_clock::now();
 	cout << "\ntotal elapsed time : " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << "seconds" << "\n";
 	return 0;
 }
-
+void numiter(){
+	n_it=atoi(optarg);
+}
+void enable_print(){
+	do_print=true;
+}
 void addEdge(int u, int v) {
 	adj[u].push_back(v);
 }
@@ -75,10 +89,11 @@ void Pagerank_multithread(int V, vector<double> rank, int num_iter) {
 			rank[i] = tmp[i];
 		}
 	}
-	/*cout << "\nPagerank algorithm" << " iteration " << num_iter << "\n";
-	for (int i = 0; i < V; i++) {
-	cout << i << " : " << rank[i] << "\n";
-	}*/
+	if(do_print){cout << "\nPagerank algorithm" << " iteration " << num_iter << "\n";
+		for (int i = 0; i < V; i++) {
+		cout << i << " : " << rank[i] << "\n";
+		}
+	}
 	auto pagerank_end = chrono::system_clock::now();
 	cout << "elapsed time for pagerank algorithm : " << chrono::duration_cast<chrono::duration<double>>(pagerank_end - pagerank_start).count() << "seconds" << "\n";
 }

@@ -3,7 +3,7 @@
 #include <fstream>
 #include <queue>
 #include <chrono>
-#include <thread>
+#include <unistd.h>
 #include "CSR_convert.h"
 
 using namespace std;
@@ -16,12 +16,13 @@ vector<int> Vertex_Table = { 0 }; // Start from 0
 vector<int> Edge_Table;
 int dist[10000000];
 bool visited[10000000];
+bool do_print=false;
 
 struct Edge {
 	bool exist_Edge;
 	int weight;
 };
-
+void enable_print();
 struct Edge findEdge(int, int); //find where Edge is visited and exist
 void addEdge(int, int);
 
@@ -45,6 +46,7 @@ int main(int argc, char**argv)
 		fscanf(fp, "%d %d", &src, &destination);
 		addEdge(src, destination);
 	}
+	if(getopt(argc, argv, "p")=='p') enable_print();
 	toCSR(V, adj);
 	dijkstra(V, 0);
 	auto end = chrono::system_clock::now();
@@ -52,6 +54,9 @@ int main(int argc, char**argv)
 	return 0;
 }
 
+void enable_print(){
+	do_print=true;
+}
 struct Edge findEdge(int u, int v) {
 	struct Edge e1 = { false, INF };
 	int temp_index = 0;
@@ -95,7 +100,7 @@ void dijkstra(int V, int start) {
 			}
 		}
 	}
-	//printSolution(dist, V);
+	if(do_print) printSolution(dist, V);
 	auto dijkstra_end = chrono::system_clock::now();
 	cout << "elapsed time for dijkstra algorithm : " << chrono::duration_cast<chrono::duration<double>>(dijkstra_end - dijkstra_start).count() << "seconds" << "\n";
 }
