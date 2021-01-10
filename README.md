@@ -5,9 +5,9 @@ run dijkstra and pagerank algorithm using CSR and compare with gpabs
 ### single thread   
 algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
 ---|---|---|---|
-toCSR|0.014615s|0.155632s|44.6702s   
+toCSR|0.014615s|0.155632s|12.5018s   
 pagerank(with 10 iterations)|0.0564171s|0.577729s|46.107s
-dijkstra|0.250178s|3.6805s|  
+dijkstra|0.250178s|3.6805s|239.351s  
 
 ### parallel
 algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
