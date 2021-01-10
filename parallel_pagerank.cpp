@@ -44,7 +44,7 @@ int main(int argc, char**argv)
 		addEdge(src, destination);
 	}
 	rank.resize(V);
-	toCSR(V, adj, rank);
+	toCSR(V, adj);
 	Pagerank_multithread(V, rank, 10);
 	auto end = chrono::system_clock::now();
 	cout << "\ntotal elapsed time : " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << "seconds" << "\n";

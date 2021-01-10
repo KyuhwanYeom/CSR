@@ -9,7 +9,7 @@ extern vector<int> weight;
 extern vector<int> Vertex_Table; // Start from 0
 extern vector<int> Edge_Table;
 
-void toCSR(int V, vector<vector<int>> adj, vector<double> &rank)
+void toCSR(int V, vector<vector<int>> adj)
 {
 	auto CSR_start = chrono::system_clock::now();
 	int n = V;

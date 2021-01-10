@@ -4,9 +4,6 @@
 #include <queue>
 #include <chrono>
 #include <thread>
-#include <stdio.h>
-#include <cstdio>
-#include <omp.h>
 #include "CSR_convert.h"
 
 using namespace std;
@@ -30,14 +27,12 @@ void addEdge(int, int);
 
 void printVector(vector<int>);//print CSR
 
-//int findMin(int, int[], bool[]);//find minimum distance in dijkstra algorithm
 void printSolution(int[], int);
 void dijkstra(int, int);
 
 int main(int argc, char**argv)
 {
 	auto start = chrono::system_clock::now();
-	vector<double> rank;
 	int weight;
 	int V;
 	int src;
@@ -50,25 +45,13 @@ int main(int argc, char**argv)
 		fscanf(fp, "%d %d", &src, &destination);
 		addEdge(src, destination);
 	}
-	rank.resize(V);
-	toCSR(V, adj, rank);
+	toCSR(V, adj);
 	dijkstra(V, 0);
 	auto end = chrono::system_clock::now();
 	cout << "\ntotal elapsed time : " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << "seconds" << "\n";
 	return 0;
 }
 
-int findMin(int V, int dist[], bool visited[]) { //find minimum weight edge and return index
-	int min = INF;
-	int min_index;
-	for (int v = 0; v < V; v++) {
-		if (!visited[v] && dist[v] <= min) {
-			min = dist[v];
-			min_index = v;
-		}
-	}
-	return min_index;
-}
 struct Edge findEdge(int u, int v) {
 	struct Edge e1 = { false, INF };
 	int temp_index = 0;
@@ -93,16 +76,24 @@ void printSolution(int dist[], int n)
 }
 void dijkstra(int V, int start) {
 	auto dijkstra_start = chrono::system_clock::now();
+	int cost;
+	priority_queue<pair<int, int>> pq;
+	pq.push({ 0,start });
 	for (int i = 0; i < V; i++) dist[i] = INF;
 	dist[start] = 0;
-	for (int i = 0; i < V - 1; i++) {
-		int u = findMin(V, dist, visited);
-		for (int v = 0; v < V; v++) {
-			if (!visited[v] && findEdge(u, v).exist_Edge && dist[u] != INF) {
-				if (dist[u] + findEdge(u, v).weight < dist[v]) dist[v] = dist[u] + findEdge(u, v).weight;
+	while (!pq.empty()) {
+		int d = -pq.top().first;
+		int cur = pq.top().second;
+		pq.pop();
+		if (dist[cur] < d) continue;
+		for (int i = 0; i < Vertex_Table[cur + 1] - Vertex_Table[cur]; i++) {
+			if (findEdge(cur, Edge_Table[Vertex_Table[cur] + i]).exist_Edge) cost = d + 1;
+			else cost = INF;
+			if (cost < dist[Edge_Table[Vertex_Table[cur] + i]]) {
+				dist[Edge_Table[Vertex_Table[cur] + i]] = cost;
+				pq.push(make_pair(-cost, Edge_Table[Vertex_Table[cur] + i]));
 			}
 		}
-		visited[u] = true;
 	}
 	//printSolution(dist, V);
 	auto dijkstra_end = chrono::system_clock::now();
