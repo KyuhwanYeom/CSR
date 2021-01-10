@@ -1,6 +1,24 @@
 # CSR
 run dijkstra and pagerank algorithm using CSR and compare with gpabs   
-
+# Quick Start   
+### dijkstra
+compile
+```
+g++ [-fopenmp] [parallel_]dijkstra.cpp CSR_convert.h -o dijkstra.out
+```
+output
+```
+./dijkstra.out [text file name] [do_print]
+```
+### pagerank
+compile
+```
+g++ [-fopenmp] [parallel_]pagerank.cpp CSR_convert.h -o pagerank.out
+```
+output
+```
+./pagerank.out [text file name] [do_print] [number of iterations]
+```
 # result   
 ### single thread   
 algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
