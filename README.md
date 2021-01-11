@@ -35,7 +35,7 @@ dijkstra|0.250178s|3.6805s|239.351s
 algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
 ---|---|---|---|
 pagerank(with 10 iterations)|0.0215752s|0.225483s|17.5329s
-dijkstra|0.107452s|1.70978s|102.412s
+dijkstra|0.107452s|1.31629s|102.412s
 
 ### gpabs
 algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
