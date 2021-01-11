@@ -20,8 +20,9 @@ output
 ./pagerank.out [text file name] [do_print] [number of iterations]
 ```
 ### shortcut
-<mark style='background-color: #f6f8fa'>p</mark>    print result of dijkstra and pagerank algorithm
-print
+p   :  print result of dijkstra and pagerank algorithm
+n   :  number of iterations
+
 # result   
 ### single thread   
 algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
