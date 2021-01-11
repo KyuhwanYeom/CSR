@@ -94,11 +94,13 @@ void dijkstra_multithread(int V, int start) {
 		int cur = pq.top().second;
 		pq.pop();
 		if (dist[cur] < d) continue;
+#pragma omp parallel for
 		for (int i = 0; i < Vertex_Table[cur + 1] - Vertex_Table[cur]; i++) {
 			if (findEdge(cur, Edge_Table[Vertex_Table[cur]+i]).exist_Edge) cost = d + 1;
 			else cost = INF;
 			if (cost < dist[Edge_Table[Vertex_Table[cur] + i]]) {
 				dist[Edge_Table[Vertex_Table[cur] + i]] = cost;
+#pragma omp critical
 				pq.push(make_pair(-cost, Edge_Table[Vertex_Table[cur] + i]));
 			}
 		}
