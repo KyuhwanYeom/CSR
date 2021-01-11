@@ -20,8 +20,8 @@ output
 ./pagerank.out [text file name] [do_print] [number of iterations]
 ```
 ### shortcut
-p   :  print result of dijkstra and pagerank algorithm   
-n   :  number of iterations
+-p   :  print result of dijkstra and pagerank algorithm   
+-n   :  number of iterations
 
 # result   
 ### single thread   
