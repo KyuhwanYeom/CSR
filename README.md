@@ -25,20 +25,20 @@ output
 
 # result   
 ### single thread   
-algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
+algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77360 Nodes)|LiveJournal(4847571 Nodes)    
 ---|---|---|---|
 toCSR|0.014615s|0.155632s|12.5018s   
 pagerank(with 10 iterations)|0.0564171s|0.577729s|46.107s
 dijkstra|0.250178s|3.6805s|239.351s  
 
 ### parallel
-algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
+algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77360 Nodes)|LiveJournal(4847571 Nodes)    
 ---|---|---|---|
 pagerank(with 10 iterations)|0.0215752s|0.225483s|17.5329s
 dijkstra|0.107452s|1.31629s|102.412s
 
 ### gpabs
-algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77370 Nodes)|LiveJournal(4847571 Nodes)    
+algorithm|ego-Facebook(4039 Nodes)|Slashdot0811(77360 Nodes)|LiveJournal(4847571 Nodes)    
 ---|---|---|---|   
 pagerank(with 10 iterations)|0.06861s|0.57092s|2.24845s
 sssp(delta stepping algorithm)|0.79807s|2.47277s|21.11190s  
